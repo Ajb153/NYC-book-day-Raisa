@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manhattan Book-Lover Day: NYC</title>
+  <style>
+    :root { --bg:#0b0b0c; --card:#141418; --text:#f4f4f5; --muted:#b7b7c2; --line:#2a2a33; --accent:#ffd2e1; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:linear-gradient(180deg,#0b0b0c 0%, #0f0f14 100%);color:var(--text)}
+    a{color:inherit}
+    header{padding:28px 18px 10px;max-width:1100px;margin:0 auto}
+    h1{margin:0 0 8px;font-size:28px;letter-spacing:-0.02em}
+    .sub{margin:0;color:var(--muted);line-height:1.4}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 18px 36px}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media(min-width:900px){.grid{grid-template-columns:1.15fr .85fr}}
+    .card{background:rgba(20,20,24,.92);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .card h2{margin:0;padding:16px 16px 0;font-size:18px}
+    .card p{margin:8px 16px 16px;color:var(--muted);line-height:1.5}
+    .timeline{padding:6px 16px 18px}
+    .stop{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+    .stop:first-child{border-top:none}
+    .time{color:var(--accent);font-weight:650}
+    .title{font-weight:700;margin:0 0 6px}
+    .meta{margin:0 0 8px;color:var(--muted);font-size:13px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .tag{font-size:12px;color:#101014;background:var(--accent);padding:6px 10px;border-radius:999px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#101015;text-decoration:none}
+    .btn:hover{border-color:#3a3a49}
+    .img{width:100%;height:220px;object-fit:cover;display:block;background:#0e0e12}
+    .mini{display:grid;grid-template-columns:1fr;gap:12px;padding:16px}
+    .mini .note{padding:14px;border:1px dashed #343444;border-radius:14px;color:var(--muted);line-height:1.5}
+    .pill{display:inline-block;margin-top:10px;background:#101015;border:1px solid var(--line);border-radius:999px;padding:8px 10px;color:var(--muted);font-size:12px}
+    footer{max-width:1100px;margin:0 auto;padding:0 18px 30px;color:var(--muted);font-size:12px;line-height:1.5}
+    .mutedlink{color:var(--muted)}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Manhattan Book-Lover Day (with coffee + cute, girly stops)</h1>
+    <p class="sub">
+      A relaxed, photo-friendly day that starts grand and classic, then gets cozy in SoHo/West Village.
+      Built so you can linger, browse, and keep the vibe romantic (not rushed).
+    </p>
+  </header>
+
+  <div class="wrap">
+    <div class="grid">
+      <!-- LEFT: TIMELINE -->
+      <section class="card">
+        <h2>The day plan</h2>
+        <p>Everything below is Manhattan-only. Times are a guide - stretch anything you’re enjoying.</p>
+
+        <div class="timeline">
+          <!-- 1 -->
+          <div class="stop">
+            <div class="time">10:00</div>
+            <div>
+              <p class="title">NY Public Library (Schwarzman Building) + Rose Reading Room</p>
+              <p class="meta">476 Fifth Ave (at 42nd St). Start with the “movie set” moment: chandeliers, murals, hush. </p>
+              <div class="tags">
+                <span class="tag">Iconic</span>
+                <span class="tag">Quiet + romantic</span>
+                <span class="tag">Best photos early</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=NYPL%20Stephen%20A.%20Schwarzman%20Building%20476%205th%20Ave%20New%20York%20NY%2010018" target="_blank" rel="noopener">📍 Map</a>
+                <a class="btn" href="https://www.nypl.org/locations/schwarzman" target="_blank" rel="noopener">🕒 Hours</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="stop">
+            <div class="time">11:15</div>
+            <div>
+              <p class="title">Cute coffee stop: Ralph’s Coffee (Fifth Ave)</p>
+              <p class="meta">A very “Pinterest” coffee moment. Double-check the current location/hours before you go.</p>
+              <div class="tags">
+                <span class="tag">Girly + photogenic</span>
+                <span class="tag">Quick pick-me-up</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ralph%27s%20Coffee%20711%205th%20Ave%20New%20York%20NY%2010022" target="_blank" rel="noopener">📍 Map</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="stop">
+            <div class="time">12:00</div>
+            <div>
+              <p class="title">Rizzoli Bookstore (the “most beautiful bookstore” vibe)</p>
+              <p class="meta">1133 Broadway. Art, fashion, design, literature. It’s elegant and very browseable.</p>
+              <div class="tags">
+                <span class="tag">Design-book heaven</span>
+                <span class="tag">Giftable finds</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Rizzoli%20Bookstore%201133%20Broadway%20New%20York%20NY%2010010" target="_blank" rel="noopener">📍 Map</a>
+                <a class="btn" href="https://www.rizzolibookstore.com/" target="_blank" rel="noopener">🛍️ Website</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="stop">
+            <div class="time">13:00</div>
+            <div>
+              <p class="title">Subway / wander down to SoHo</p>
+              <p class="meta">Keep it light: this is your “stroll + chat” window.</p>
+              <div class="tags">
+                <span class="tag">Reset</span>
+                <span class="tag">People-watch</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="stop">
+            <div class="time">13:45</div>
+            <div>
+              <p class="title">McNally Jackson (SoHo) + stationery corner</p>
+              <p class="meta">134 Prince St. Beautiful tables, great curation, and cute paper goods.</p>
+              <div class="tags">
+                <span class="tag">Bookish</span>
+                <span class="tag">Stationery</span>
+                <span class="tag">Souvenir moment</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=McNally%20Jackson%20Books%20SoHo%20134%20Prince%20St%20New%20York%20NY%2010012" target="_blank" rel="noopener">📍 Map</a>
+                <a class="btn" href="https://www.mcnallyjackson.com/find-our-stores" target="_blank" rel="noopener">🕒 Stores</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 -->
+          <div class="stop">
+            <div class="time">15:00</div>
+            <div>
+              <p class="title">Bibliothèque: bookstore + café (then wine bar later)</p>
+              <p class="meta">54 Mercer St. Gorgeous lighting, sit-in browsing, and a very date-friendly vibe.</p>
+              <div class="tags">
+                <span class="tag">Sit + read</span>
+                <span class="tag">Coffee</span>
+                <span class="tag">Can turn into wine later</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Biblioth%C3%A8que%2054%20Mercer%20St%20New%20York%20NY%2010013" target="_blank" rel="noopener">📍 Map</a>
+                <a class="btn" href="https://www.bibliothequenyc.com/" target="_blank" rel="noopener">🕒 Website</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 -->
+          <div class="stop">
+            <div class="time">16:30</div>
+            <div>
+              <p class="title">Ladurée SoHo (the sweet, elegant reset)</p>
+              <p class="meta">398 W Broadway. Macarons + tea salon energy. The “she’ll remember this” stop.</p>
+              <div class="tags">
+                <span class="tag">Macarons</span>
+                <span class="tag">Classy but not try-hard</span>
+                <span class="tag">Photos</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ladur%C3%A9e%20SoHo%20398%20W%20Broadway%20New%20York%20NY%2010012" target="_blank" rel="noopener">📍 Map</a>
+                <a class="btn" href="https://laduree.com/en/pages/store/laduree-new-york-soho" target="_blank" rel="noopener">🕒 Hours</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 -->
+          <div class="stop">
+            <div class="time">18:00</div>
+            <div>
+              <p class="title">Golden hour choice (pick one)</p>
+              <p class="meta">
+                Option A: Strand Bookstore (classic NYC pilgrimage).<br/>
+                Option B: Three Lives & Company (tiny, charming West Village gem).
+              </p>
+              <div class="tags">
+                <span class="tag">Choose your ending</span>
+                <span class="tag">Depends on vibe</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=The%20Strand%20Bookstore%20828%20Broadway%20New%20York%20NY%2010003" target="_blank" rel="noopener">📍 Strand</a>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Three%20Lives%20%26%20Company%20154%20W%2010th%20St%20New%20York%20NY%2010014" target="_blank" rel="noopener">📍 Three Lives</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="stop">
+            <div class="time">19:30</div>
+            <div>
+              <p class="title">Finish: wine-at-books (if the vibe is right)</p>
+              <p class="meta">If you’re both still enjoying it, circle back to Bibliothèque for a calm glass and a little “what are you reading lately?” chat.</p>
+              <div class="tags">
+                <span class="tag">Soft landing</span>
+                <span class="tag">Romantic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: IMAGES + QUICK NOTES -->
+      <aside class="card">
+        <img class="img" src="https://media.architecturaldigest.com/photos/57f28a1afcacb2033d13f05d/16%3A9/w_2560%2Cc_limit/nypl-rose-reading-room-1.jpg" alt="NYPL Rose Main Reading Room"/>
+        <div class="mini">
+          <div class="note">
+            <strong>Little “date” touches that land well:</strong><br/>
+            • Pick a book for each other (one rule: under $20).<br/>
+            • Stationery stop - write a one-line note and tuck it into the book.<br/>
+            • Ask her to show you her “favourite shelf” in each bookstore (it’s oddly intimate and fun).
+            <div class="pill">Tip: keep it slow + let her browse</div>
+          </div>
+
+          <img class="img" style="border-radius:14px;height:180px" src="https://media.architecturaldigest.com/photos/561e9f83ed5c90fd5d612a4a/master/w_1600%2Cc_limit/Rizzoli-03.jpg" alt="Rizzoli Bookstore interior"/>
+          <img class="img" style="border-radius:14px;height:180px" src="https://mikissh.com/diary/wp-content/uploads/sites/3/2023/08/McNally-Jackson-Books-8.jpg" alt="McNally Jackson display"/>
+          <img class="img" style="border-radius:14px;height:180px" src="https://media.timeout.com/images/106091058/750/422/image.jpg" alt="Bibliotheque interior"/>
+          <img class="img" style="border-radius:14px;height:180px" src="https://yorkavenueblog.com/wp-content/uploads/2015/03/laduree-soho-1.jpg" alt="Ladurée macarons"/>
+          <img class="img" style="border-radius:14px;height:180px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Strand_Bookstore_%2848072652191%29.jpg/330px-Strand_Bookstore_%2848072652191%29.jpg" alt="Strand Bookstore exterior"/>
+
+          <div class="note">
+            <strong>If you want it even “cuter”:</strong><br/>
+            Swap the midtown coffee for whichever café is closest when you’re there, but keep the rule:
+            <em>one cute coffee + one cute sweet</em> (Ladurée is the sweet).
+            <div class="pill">Less is more. Don’t over-schedule.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    Sources for addresses/hours pulled from official venue sites where possible (NYPL, Rizzoli, McNally Jackson, Bibliothèque, Ladurée, Strand). Images are from Architectural Digest, Architectural Digest (Rizzoli), Petite New York (McNally), Time Out (Bibliothèque), York Avenue (Ladurée), and Wikimedia Commons (Strand).<br/>
+    If any stop is unexpectedly busy/closed, just keep the “book + coffee + sweet” pattern and stay in the same neighbourhood.
+  </footer>
+</body>
+</html>
