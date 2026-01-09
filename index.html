@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Raisa’s NYC Book Day</title>
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --card:#141418;
+      --text:#f4f4f5;
+      --muted:#b7b7c2;
+      --line:#2a2a33;
+      --accent:#ffd2e1;
+      --panel:#101015;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b0b0c 0%, #0f0f14 100%);
+      color:var(--text)
+    }
+    a{color:inherit}
+    header{padding:28px 18px 10px;max-width:1100px;margin:0 auto}
+    h1{margin:0 0 8px;font-size:28px;letter-spacing:-0.02em}
+    .sub{margin:0;color:var(--muted);line-height:1.4}
+
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 18px 36px}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media(min-width:900px){.grid{grid-template-columns:1.15fr .85fr}}
+
+    .card{
+      background:rgba(20,20,24,.92);
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.35)
+    }
+    .card h2{margin:0;padding:16px 16px 0;font-size:18px}
+    .card p{margin:8px 16px 16px;color:var(--muted);line-height:1.5}
+
+    /* Controls */
+    .controls{
+      display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+      padding:14px 16px 0
+    }
+    .routebadge{
+      color:#101014;background:var(--accent);
+      padding:6px 10px;border-radius:999px;font-size:12px;font-weight:650
+    }
+    .helper{color:var(--muted);font-size:12px;margin-left:auto}
+    .toggle{
+      display:flex;align-items:center;gap:10px;
+      background:var(--panel);border:1px solid var(--line);
+      border-radius:999px;padding:8px 10px;user-select:none;
+    }
+    .toggle small{color:var(--muted)}
+    .toggle input{
+      appearance:none;width:44px;height:26px;border-radius:999px;position:relative;
+      outline:none;cursor:pointer;background:#2a2a33;border:1px solid #3a3a49
+    }
+    .toggle input::after{
+      content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;
+      background:var(--accent);transition:transform .18s ease;
+    }
+    .toggle input:checked::after{transform:translateX(18px)}
+
+    /* Timeline */
+    .timeline{padding:10px 16px 18px}
+    .item{
+      border:1px solid var(--line);
+      background:rgba(16,16,21,.55);
+      border-radius:16px;
+      padding:14px 14px;
+      margin:12px 0;
+    }
+    .item:first-child{margin-top:0}
+
+    /* Stop header: time + title together */
+    .head{
+      display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .time{
+      color:var(--accent);
+      font-weight:750;
+      letter-spacing:0.02em;
+      min-width:62px;
+    }
+    .place{
+      color:var(--accent);
+      font-weight:800;
+      font-size:16px;
+      letter-spacing:-0.01em;
+      line-height:1.15;
+    }
+
+    .desc{
+      margin:0 0 10px;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:13px;
+    }
+
+    /* Travel */
+    .travel{
+      margin:10px 0 10px;
+      border:1px solid var(--line);
+      background:rgba(16,16,21,.78);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .travel b{color:var(--text)}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);background:var(--panel);
+      color:var(--muted);font-size:12px
+    }
+    .divider{height:1px;background:var(--line);margin:8px 0}
+
+    /* Tags + Actions */
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .tag{
+      font-size:12px;color:#101014;background:var(--accent);
+      padding:6px 10px;border-radius:999px
+    }
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:12px;
+      border:1px solid var(--line);background:var(--panel);
+      text-decoration:none
+    }
+    .btn:hover{border-color:#3a3a49}
+
+    /* Images */
+    .imgHero{width:100%;height:220px;object-fit:cover;display:block;background:#0e0e12}
+    .imgBreak{
+      border:1px solid var(--line);
+      background:rgba(16,16,21,.55);
+      border-radius:16px;
+      padding:10px;
+      margin:12px 0;
+    }
+    .imgBreak img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      border-radius:12px;
+      display:block;
+      background:#0e0e12;
+    }
+    .cap{
+      margin:10px 4px 2px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    /* Right column */
+    .mini{display:grid;grid-template-columns:1fr;gap:12px;padding:16px}
+    .note{
+      padding:14px;border:1px dashed #343444;border-radius:14px;color:var(--muted);line-height:1.5;
+      background:rgba(16,16,21,.35);
+    }
+    .pill{
+      display:inline-block;margin-top:10px;background:var(--panel);
+      border:1px solid var(--line);border-radius:999px;padding:8px 10px;
+      color:var(--muted);font-size:12px
+    }
+
+    footer{
+      max-width:1100px;margin:0 auto;padding:0 18px 30px;
+      color:var(--muted);font-size:12px;line-height:1.5
+    }
+
+    /* Mode visibility */
+    [data-mode="walk"] .only-story{display:none}
+    [data-mode="story"] .only-walk{display:none}
+    [data-mode="story"] .only-walk-stop{display:none}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Raisa’s Self-Guided NYC Book Day</h1>
+    <p class="sub">
+      A relaxed Manhattan wander built for slow browsing: iconic library first, then pretty bookstores, coffee breaks, and a sweet stop.
+      No rushing - linger wherever you want.
+    </p>
+  </header>
+
+  <div class="wrap">
+    <div class="grid">
+      <!-- LEFT -->
+      <section class="card" id="app" data-mode="story">
+        <div class="controls">
+          <span class="routebadge" id="routeBadge">Story order</span>
+
+          <label class="toggle" title="Switch between vibe-first order and the most efficient walking order">
+            <small>Best walking order</small>
+            <input id="routeToggle" type="checkbox" />
+          </label>
+
+          <span class="helper" id="routeHelper">Vibe-first order (iconic → cute → elegant → SoHo → sweet → finale).</span>
+        </div>
+
+        <h2>Your day plan</h2>
+        <p>
+          Times are just a guide - treat this like a menu. If you love a stop, stay longer. If you’re not feeling it, skip ahead.
+          Travel notes show approximate walk times, plus a simple subway suggestion when it’s worth it.
+        </p>
+
+        <div class="timeline" id="timeline">
+          <!-- NYPL -->
+          <div class="item stop" data-id="nypl">
+            <div class="head">
+              <div class="time">10:00</div>
+              <div class="place">New York Public Library + Rose Main Reading Room</div>
+            </div>
+            <p class="desc">Start with the “wow” moment: the Schwarzman building is gorgeous inside. Take your time in the reading room, then step outside and spot the literary quotes along Library Way.</p>
+            <div class="tags">
+              <span class="tag">Iconic</span><span class="tag">Quiet + calm</span><span class="tag">Best photos early</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=NYPL%20Stephen%20A.%20Schwarzman%20Building%20476%205th%20Ave%20New%20York%20NY%2010018" target="_blank" rel="noopener">📍 Map</a>
+              <a class="btn" href="https://www.nypl.org/locations/schwarzman" target="_blank" rel="noopener">🕒 Hours</a>
+            </div>
+          </div>
+
+          <!-- Image break (spaced out) -->
+          <div class="imgBreak" data-id="img-nypl">
+            <img src="https://media.architecturaldigest.com/photos/57f28a1afcacb2033d13f05d/16%3A9/w_2560%2Cc_limit/nypl-rose-reading-room-1.jpg" alt="NYPL Rose Main Reading Room">
+            <div class="cap">A proper “wow” room. Take a slow lap, then sit for a minute.</div>
+          </div>
+
+          <!-- Ralph's -->
+          <div class="item stop" data-id="ralph">
+            <div class="head">
+              <div class="time">11:15</div>
+              <div class="place">Coffee break: Ralph’s Coffee (Fifth Ave)</div>
+            </div>
+            <p class="desc">A cute coffee stop. Grab something warm, people-watch for a minute, and reset before the next bookstore.</p>
+            <div class="travel">
+              <div class="row"><span class="chip">🚶 Walk ~15 min</span></div>
+              <div>Easy Midtown walk.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Cute + cosy</span><span class="tag">Quick reset</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ralph%27s%20Coffee%20711%205th%20Ave%20New%20York%20NY%2010022" target="_blank" rel="noopener">📍 Map</a>
+            </div>
+          </div>
+
+          <!-- Rizzoli -->
+          <div class="item stop" data-id="rizzoli">
+            <div class="head">
+              <div class="time">12:00</div>
+              <div class="place">Rizzoli Bookstore (the beautiful one)</div>
+            </div>
+            <p class="desc">Elegant, calm, and full of art, fashion, design, and lovely coffee-table books. This is a browse-slowly kind of place.</p>
+            <div class="travel">
+              <div class="row"><span class="chip">🚶 Walk ~25 min</span></div>
+              <div>Midtown → Flatiron-ish. Totally doable if you’re happy walking; otherwise subway works too.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Gorgeous interiors</span><span class="tag">Design + art</span><span class="tag">Giftable finds</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Rizzoli%20Bookstore%201133%20Broadway%20New%20York%20NY%2010010" target="_blank" rel="noopener">📍 Map</a>
+              <a class="btn" href="https://www.rizzolibookstore.com/" target="_blank" rel="noopener">🕒 Website</a>
+            </div>
+          </div>
+
+          <!-- Image break (spaced out) -->
+          <div class="imgBreak" data-id="img-rizzoli">
+            <img src="https://media.architecturaldigest.com/photos/561e9f83ed5c90fd5d612a4a/master/w_1600%2Cc_limit/Rizzoli-03.jpg" alt="Rizzoli Bookstore interior">
+            <div class="cap">If you want one “NY souvenir” book, Rizzoli is the place.</div>
+          </div>
+
+          <!-- McNally -->
+          <div class="item stop" data-id="mcnally">
+            <div class="head">
+              <div class="time">13:45</div>
+              <div class="place">McNally Jackson (SoHo)</div>
+            </div>
+            <p class="desc">A proper indie bookstore with great tables, thoughtful fiction picks, and cute stationery.</p>
+
+            <div class="travel only-story">
+              <div class="row"><span class="chip">🚇 Subway</span><span class="chip">Lines: R/W (recommended)</span></div>
+              <div class="divider"></div>
+              <div>
+                <b>Enter at:</b> 23 St (R/W)<br/>
+                <b>Board:</b> Downtown-bound (toward Whitehall St / Bay Ridge)<br/>
+                <b>Get off at:</b> Prince St (R/W)<br/>
+                <b>Then:</b> short walk to McNally Jackson (Prince St)
+              </div>
+              <div class="divider"></div>
+              <div class="row"><span class="chip">🚶 Alt walk ~30 min</span></div>
+            </div>
+
+            <div class="travel only-walk">
+              <div class="row"><span class="chip">🚶 Walk ~25 min</span></div>
+              <div>Union Square → SoHo. If you’d rather save steps: R/W from 14 St–Union Sq to Prince St (Downtown-bound).</div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">Indie fave</span><span class="tag">Stationery</span><span class="tag">Slow browse</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=McNally%20Jackson%20Books%20SoHo%20134%20Prince%20St%20New%20York%20NY%2010012" target="_blank" rel="noopener">📍 Map</a>
+              <a class="btn" href="https://www.mcnallyjackson.com/find-our-stores" target="_blank" rel="noopener">🕒 Website</a>
+            </div>
+          </div>
+
+          <!-- Bibliothèque -->
+          <div class="item stop" data-id="biblio">
+            <div class="head">
+              <div class="time">15:00</div>
+              <div class="place">Bibliothèque (books + café)</div>
+            </div>
+            <p class="desc">This place is a vibe: browse a bit, sit with a drink, and enjoy the calm. It’s a great “pause” stop before the sweet treat.</p>
+            <div class="travel">
+              <div class="row"><span class="chip">🚶 Walk ~8 min</span></div>
+              <div>Short SoHo stroll.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Sit + read</span><span class="tag">Cozy</span><span class="tag">Aesthetic</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Biblioth%C3%A8que%2054%20Mercer%20St%20New%20York%20NY%2010013" target="_blank" rel="noopener">📍 Map</a>
+              <a class="btn" href="https://www.bibliothequenyc.com/" target="_blank" rel="noopener">🕒 Website</a>
+            </div>
+          </div>
+
+          <!-- Image break (spaced out) -->
+          <div class="imgBreak" data-id="img-biblio">
+            <img src="https://media.timeout.com/images/106091058/750/422/image.jpg" alt="Bibliotheque interior">
+            <div class="cap">If you need a reset, this is your safe haven.</div>
+          </div>
+
+          <!-- Ladurée -->
+          <div class="item stop" data-id="laduree">
+            <div class="head">
+              <div class="time">16:30</div>
+              <div class="place">Ladurée SoHo (sweet stop)</div>
+            </div>
+            <p class="desc">Macarons + tea salon energy. Perfect little “treat yourself” moment to rest your feet.</p>
+            <div class="travel">
+              <div class="row"><span class="chip">🚶 Walk ~10 min</span></div>
+              <div>Sweet stop is close.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Macarons</span><span class="tag">Pretty</span><span class="tag">Treat yourself</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Ladur%C3%A9e%20SoHo%20398%20W%20Broadway%20New%20York%20NY%2010012" target="_blank" rel="noopener">📍 Map</a>
+              <a class="btn" href="https://laduree.com/en/pages/store/laduree-new-york-soho" target="_blank" rel="noopener">🕒 Hours</a>
+            </div>
+          </div>
+
+          <!-- Strand -->
+          <div class="item stop" data-id="strand">
+            <div class="head">
+              <div class="time">18:00</div>
+              <div class="place">The Strand (legendary browsing finale)</div>
+            </div>
+            <p class="desc">Big, iconic, endless shelves. If you want a proper NYC book pilgrimage, this is the one.</p>
+
+            <div class="travel only-story">
+              <div class="row"><span class="chip">🚇 Subway</span><span class="chip">Lines: B/D/F/M (fast) or A/C/E</span></div>
+              <div class="divider"></div>
+              <div>
+                <b>Enter at:</b> Broadway–Lafayette (B/D/F/M) <em>or</em> Spring St (C/E)<br/>
+                <b>Board:</b> Uptown-bound (toward Midtown)<br/>
+                <b>Get off at:</b> West 4 St (B/D/F/M) or 14 St (A/C/E)<br/>
+                <b>Then:</b> short walk to Strand (Union Square area)
+              </div>
+            </div>
+
+            <div class="travel only-walk">
+              <div class="row"><span class="chip">🚶 Walk ~18 min</span></div>
+              <div>Flatiron-ish → Union Square area. Nice city walk.</div>
+            </div>
+
+            <div class="tags">
+              <span class="tag">Legendary</span><span class="tag">Huge selection</span><span class="tag">Tote potential</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=The%20Strand%20Bookstore%20828%20Broadway%20New%20York%20NY%2010003" target="_blank" rel="noopener">📍 Map</a>
+            </div>
+          </div>
+
+          <!-- Image break (spaced out) -->
+          <div class="imgBreak" data-id="img-strand">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Strand_Bookstore_%2848072652191%29.jpg/330px-Strand_Bookstore_%2848072652191%29.jpg" alt="Strand Bookstore exterior">
+            <div class="cap">If you buy a tote, I fully support it.</div>
+          </div>
+
+          <!-- Three Lives (walking route only) -->
+          <div class="item stop only-walk-stop" data-id="three">
+            <div class="head">
+              <div class="time">18:00</div>
+              <div class="place">Three Lives &amp; Company (West Village gem)</div>
+            </div>
+            <p class="desc">Tiny, charming, and beautifully curated. This is the cozy ending if you want something quieter than Strand.</p>
+            <div class="travel only-walk">
+              <div class="row"><span class="chip">🚶 Walk ~22 min</span></div>
+              <div>SoHo → West Village. Prettiest wandering leg of the day.</div>
+            </div>
+            <div class="tags">
+              <span class="tag">Cozy</span><span class="tag">Charming</span><span class="tag">Local fave</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Three%20Lives%20%26%20Company%20154%20W%2010th%20St%20New%20York%20NY%2010014" target="_blank" rel="noopener">📍 Map</a>
+            </div>
+          </div>
+
+          <!-- Finish -->
+          <div class="item stop" data-id="finish">
+            <div class="head">
+              <div class="time">19:30</div>
+              <div class="place">Optional finish: one calm drink (if you feel like it)</div>
+            </div>
+            <p class="desc">If you still have energy, end with a relaxed drink and a final “what did I buy?” moment. If not, call it a win and head home with your new book(s).</p>
+            <div class="tags">
+              <span class="tag">Soft landing</span><span class="tag">Chill</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="card">
+        <img class="imgHero" src="https://media.architecturaldigest.com/photos/57f28a1afcacb2033d13f05d/16%3A9/w_2560%2Cc_limit/nypl-rose-reading-room-1.jpg" alt="NYPL Rose Main Reading Room"/>
+        <div class="mini">
+          <div class="note">
+            <strong>Little touches (optional, but fun):</strong><br/>
+            • Pick one book as your “NYC souvenir” (write the date inside).<br/>
+            • Grab a postcard or cute stationery at McNally Jackson.<br/>
+            • Take one photo at each stop (nothing intense, just memories).<br/>
+            • If you want a calm break: Bibliothèque is your safe haven.
+            <div class="pill">Rule: slow browsing wins</div>
+          </div>
+
+          <div class="note">
+            <strong>Note on “platforms”:</strong><br/>
+            NYC subway guidance is best given by <em>direction</em> (Uptown / Downtown / Brooklyn-bound) rather than platform numbers
+            because numbering isn’t consistent station to station.
+            <div class="pill">If unsure: ask “which side for Downtown?”</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    Made as a little NYC send-off for Raisa - enjoy the city, take your time, and buy a book or three. Will miss you. But don't tell anyone.
+  </footer>
+
+  <script>
+    (function(){
+      var app = document.getElementById('app');
+      var timeline = document.getElementById('timeline');
+      var toggle = document.getElementById('routeToggle');
+      var badge = document.getElementById('routeBadge');
+      var helper = document.getElementById('routeHelper');
+      if(!app || !timeline || !toggle) return;
+
+      // Build a stable lookup of all nodes ONCE.
+      var nodeMap = {};
+      var kids = Array.prototype.slice.call(timeline.children);
+      for(var i=0;i<kids.length;i++){
+        var id = kids[i].getAttribute('data-id');
+        if(id) nodeMap[id] = kids[i];
+      }
+
+      // Orders (include spaced-out images only)
+      var storyOrder = [
+        'nypl','img-nypl',
+        'ralph',
+        'rizzoli','img-rizzoli',
+        'mcnally',
+        'biblio','img-biblio',
+        'laduree',
+        'strand','img-strand',
+        'finish'
+      ];
+
+      var walkOrder = [
+        'nypl','img-nypl',
+        'ralph',
+        'rizzoli','img-rizzoli',
+        'strand','img-strand',
+        'mcnally',
+        'biblio','img-biblio',
+        'laduree',
+        'three',
+        'finish'
+      ];
+
+      function rebuild(order){
+        var frag = document.createDocumentFragment();
+        for(var i=0;i<order.length;i++){
+          var n = nodeMap[order[i]];
+          if(n) frag.appendChild(n);
+        }
+        timeline.innerHTML = '';
+        timeline.appendChild(frag);
+      }
+
+      function setMode(mode){
+        app.setAttribute('data-mode', mode);
+        if(mode === 'walk'){
+          badge.textContent = 'Best walking order';
+          helper.textContent = 'Most walk-efficient flow (fewer backtracks).';
+          rebuild(walkOrder);
+        } else {
+          badge.textContent = 'Story order';
+          helper.textContent = 'Vibe-first order (iconic → cute → elegant → SoHo → sweet → finale).';
+          rebuild(storyOrder);
+        }
+      }
+
+      // Init
+      setMode('story');
+      toggle.checked = false;
+
+      toggle.addEventListener('change', function(){
+        setMode(toggle.checked ? 'walk' : 'story');
+      });
+    })();
+  </script>
+</body>
+</html>
